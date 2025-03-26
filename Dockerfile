@@ -4,7 +4,7 @@ FROM ubuntu:latest
 # Muhitni sozlash
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Kerakli paketlarni o'rnatish
+# Kerakli paketlarni o'rnatish (gperf qo'shildi!)
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -16,7 +16,8 @@ RUN apt-get update && \
     zlib1g-dev \
     libssl-dev \
     libcurl4-openssl-dev \
-    libsqlite3-dev && \
+    libsqlite3-dev \
+    gperf && \
     rm -rf /var/lib/apt/lists/*
 
 # Telegram Bot API'ni yuklash va yig'ish

@@ -21,11 +21,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Telegram Bot API'ni yuklash va yig'ish
-# Telegram Bot API'ning tayyor versiyasini yuklash va o'rnatish
 WORKDIR /app
-RUN wget https://github.com/tdlib/telegram-bot-api/releases/download/v6.9.0/telegram-bot-api-linux-amd64 -O telegram-bot-api && \
-    chmod +x telegram-bot-api
-    
+RUN git clone --recursive https://github.com/tdlib/telegram-bot-api.git && \
+    cd telegram-bot-api && \
+    mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    cmake --build . --parallel 2 && \
+    cmake --install .
 
 # Portni aniqlash
 EXPOSE 8081

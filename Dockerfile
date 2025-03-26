@@ -13,7 +13,10 @@ RUN apt-get update && \
     wget \
     curl \
     openssl \
-    zlib1g-dev && \
+    zlib1g-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libsqlite3-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Telegram Bot API'ni yuklash va yig'ish
@@ -22,7 +25,7 @@ RUN git clone --recursive https://github.com/tdlib/telegram-bot-api.git && \
     cd telegram-bot-api && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release .. && \
-    cmake --build . --parallel 1 && \
+    cmake --build . --parallel 2 && \
     cmake --install .
 
 # Portni aniqlash

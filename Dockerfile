@@ -20,12 +20,9 @@ RUN apt-get update && \
     gperf && \
     rm -rf /var/lib/apt/lists/*
 
-# Ishonchlilik uchun git HTTPS-ni majburlash
-RUN git config --global http.sslVerify false
-
-# Telegram Bot API'ni yuklash va yig'ish (so‘nggi barqaror versiya)
+# Telegram Bot API'ni yuklash va yig'ish (so'nggi versiya - master branch)
 WORKDIR /app
-RUN git clone --recursive -b v6.9.1 https://github.com/tdlib/telegram-bot-api.git && \
+RUN git clone --recursive https://github.com/tdlib/telegram-bot-api.git && \
     cd telegram-bot-api && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release .. && \
@@ -36,4 +33,4 @@ RUN git clone --recursive -b v6.9.1 https://github.com/tdlib/telegram-bot-api.gi
 EXPOSE 8081
 
 # API'ni ishga tushirish
-CMD ["telegram-bot-api", "--http-port=8081", "--max-upload-size=209715200", "--verbosity=3"]
+CMD ["telegram-bot-api", "--http-port=8081", "--local", "--max-upload-size=209715200", "--verbosity=3"]

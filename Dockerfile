@@ -33,4 +33,4 @@ RUN git clone --recursive https://github.com/tdlib/telegram-bot-api.git && \
 EXPOSE 8081
 
 # API'ni ishga tushirish
-CMD ["telegram-bot-api", "--http-port=8081", "--local", "--max-upload-size=209715200", "--verbosity=3"]
+CMD ["telegram-bot-api", "--http-port=8081", "--verbosity=3"]
